@@ -43,13 +43,14 @@ namespace Subset_Sum_Calculator
 
             else
             {
-
+                MessageBox.Show("Please fix your invalid " + getInvalidFieldString(result) + " field.",
+                    "Invalid " + result.ToString());
             }
         }
 
         private InvalidField validateFields(string sumText, string valuesText, out decimal outputSum, out decimal[] outputValues)
         {
-            var invalidField = InvalidField.None;
+            var invalidField = InvalidField.Sum;
 
             decimal? sum = null;
             decimal[] values = null;
@@ -59,34 +60,18 @@ namespace Subset_Sum_Calculator
             try
             {
                 sum = getSum(sumText);
+                invalidField = InvalidField.Values;
+
                 values = getValues(valuesText);
+                invalidField = InvalidField.None;
 
                 outputSum = (int)sum;
                 outputValues = values;
             }
 
-            catch (InvalidCastException ex)
+            catch (Exception)
             {
-                if (sum == null)
-                {
-                    invalidField = InvalidField.Sum;
-                }
-                else if (values == null)
-                {
-                    invalidField = InvalidField.Values;
-                }
-
-                else
-                {
-                    MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace.ToString(), 
-                        "InvlaidCastException Error");
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace.ToString(), 
-                    "Exception Error");
+                // Disregard exception; use enum to report issue
             }
 
             return invalidField;
@@ -131,6 +116,27 @@ namespace Subset_Sum_Calculator
             }
 
             return listOfDecimals.ToArray();
+        }
+
+        private string getInvalidFieldString(InvalidField invalidField)
+        {
+            var toString = "";
+
+            switch (invalidField)
+            {
+                case InvalidField.Sum:
+                    toString = "sum";
+                    break;
+                case InvalidField.Values:
+                    toString = "values";
+                    break;
+                case InvalidField.None:
+                default:
+                    toString = "N/A";
+                    break;
+            }
+
+            return toString;
         }
     }
 
