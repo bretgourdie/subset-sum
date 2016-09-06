@@ -110,12 +110,14 @@ namespace Subset_Sum_Calculator
 
         private decimal[] getValues(string sValues)
         {
-            var regexSplit = Regex.Split(sValues, @"\s+");
+            var emptyCharArray = new char[0];
+            var stringSplit = sValues.Split(emptyCharArray, StringSplitOptions.RemoveEmptyEntries);
+
             var listOfDecimals = new List<decimal>();
 
             try
             {
-                foreach (var singleNumber in regexSplit)
+                foreach (var singleNumber in stringSplit)
                 {
                     var parseResult = Decimal.Parse(singleNumber);
 
