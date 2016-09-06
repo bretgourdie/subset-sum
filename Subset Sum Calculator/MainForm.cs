@@ -20,8 +20,8 @@ namespace Subset_Sum_Calculator
 
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            int sum;
-            int[] values;
+            decimal sum;
+            decimal[] values;
 
             var result = validateFields(sumTextBox.Text, valuesTextBox.Text, out sum, out values);
             if (result == InvalidField.None)
@@ -35,14 +35,14 @@ namespace Subset_Sum_Calculator
             }
         }
 
-        private InvalidField validateFields(string sumText, string valuesText, out int outputSum, out int[] outputValues)
+        private InvalidField validateFields(string sumText, string valuesText, out decimal outputSum, out decimal[] outputValues)
         {
             var invalidField = InvalidField.None;
 
-            int? sum = null;
-            int[] values = null;
+            decimal? sum = null;
+            decimal[] values = null;
             outputSum = 0;
-            outputValues = new int[0];
+            outputValues = new decimal[0];
 
             try
             {
@@ -80,13 +80,13 @@ namespace Subset_Sum_Calculator
             return invalidField;
         }
 
-        private int getSum(string sSum)
+        private decimal getSum(string sSum)
         {
-            int sum;
+            decimal sum;
 
             try
             {
-                sum = int.Parse(sSum);
+                sum = Decimal.Parse(sSum);
             }
             catch (InvalidCastException ex)
             {
@@ -96,18 +96,18 @@ namespace Subset_Sum_Calculator
             return sum;
         }
 
-        private int[] getValues(string sValues)
+        private decimal[] getValues(string sValues)
         {
             var regexSplit = Regex.Split(sValues, @"\w+");
-            var listOfInts = new List<int>();
+            var listOfDecimals = new List<decimal>();
 
             try
             {
                 foreach (var singleNumber in regexSplit)
                 {
-                    var parseResult = int.Parse(singleNumber);
+                    var parseResult = Decimal.Parse(singleNumber);
 
-                    listOfInts.Add(parseResult);
+                    listOfDecimals.Add(parseResult);
                 }
             }
 
@@ -116,7 +116,7 @@ namespace Subset_Sum_Calculator
                 throw ex;
             }
 
-            return listOfInts.ToArray();
+            return listOfDecimals.ToArray();
         }
     }
 

@@ -8,10 +8,10 @@ namespace Subset_Sum_Calculator
 {
     public class SubsetSumCalculator
     {
-        public int Sum { get; protected set; }
-        public int[] Values { get; protected set; }
+        public decimal Sum { get; protected set; }
+        public decimal[] Values { get; protected set; }
 
-        public SubsetSumCalculator(int sum, int[] values)
+        public SubsetSumCalculator(decimal sum, decimal[] values)
         {
             this.Sum = sum;
             this.Values = values;
