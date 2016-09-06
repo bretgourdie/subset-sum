@@ -20,10 +20,13 @@ namespace Subset_Sum_Calculator
 
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            var result = validateFields(sumTextBox.Text, valuesTextBox.Text);
+            int sum;
+            int[] values;
+
+            var result = validateFields(sumTextBox.Text, valuesTextBox.Text, out sum, out values);
             if (result == InvalidField.None)
             {
-
+                var calc = new SubsetSumCalculator(sum, values);
             }
 
             else
@@ -32,16 +35,22 @@ namespace Subset_Sum_Calculator
             }
         }
 
-        private InvalidField validateFields(string sumText, string valuesText)
+        private InvalidField validateFields(string sumText, string valuesText, out int outputSum, out int[] outputValues)
         {
             var invalidField = InvalidField.None;
 
             int? sum = null;
             int[] values = null;
+            outputSum = 0;
+            outputValues = new int[0];
 
             try
             {
                 sum = getSum(sumText);
+                values = getValues(valuesText);
+
+                outputSum = (int)sum;
+                outputValues = values;
             }
 
             catch (InvalidCastException ex)
