@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
             this.programFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -40,10 +41,14 @@
             this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.calculateButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.outputLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.mainTableLayoutPanel.SuspendLayout();
             this.programFlowLayoutPanel.SuspendLayout();
             this.inputTableLayoutPanel.SuspendLayout();
+            this.outputTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTableLayoutPanel
@@ -105,15 +110,16 @@
             // 
             // outputTableLayoutPanel
             // 
-            this.outputTableLayoutPanel.ColumnCount = 2;
-            this.outputTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.outputTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.outputTableLayoutPanel.ColumnCount = 1;
+            this.outputTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.outputTableLayoutPanel.Controls.Add(this.outputLabel, 0, 0);
+            this.outputTableLayoutPanel.Controls.Add(this.dataGridView1, 0, 1);
             this.outputTableLayoutPanel.Location = new System.Drawing.Point(3, 149);
             this.outputTableLayoutPanel.Name = "outputTableLayoutPanel";
             this.outputTableLayoutPanel.RowCount = 2;
-            this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.outputTableLayoutPanel.Size = new System.Drawing.Size(715, 175);
+            this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.outputTableLayoutPanel.Size = new System.Drawing.Size(715, 230);
             this.outputTableLayoutPanel.TabIndex = 1;
             // 
             // sumLabel
@@ -166,7 +172,7 @@
             this.buttonsTableLayoutPanel.Controls.Add(this.calculateButton, 0, 0);
             this.buttonsTableLayoutPanel.Controls.Add(this.exitButton, 2, 0);
             this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 330);
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 385);
             this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
             this.buttonsTableLayoutPanel.RowCount = 1;
             this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -193,6 +199,38 @@
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.Location = new System.Drawing.Point(3, 0);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(709, 19);
+            this.outputLabel.TabIndex = 0;
+            this.outputLabel.Text = "Results";
+            this.outputLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 22);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(709, 205);
+            this.dataGridView1.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,7 +244,10 @@
             this.programFlowLayoutPanel.ResumeLayout(false);
             this.inputTableLayoutPanel.ResumeLayout(false);
             this.inputTableLayoutPanel.PerformLayout();
+            this.outputTableLayoutPanel.ResumeLayout(false);
+            this.outputTableLayoutPanel.PerformLayout();
             this.buttonsTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -225,6 +266,8 @@
         private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
         private System.Windows.Forms.Button calculateButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Label outputLabel;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
