@@ -43,7 +43,7 @@ namespace Subset_Sum_Calculator
 
             else
             {
-                MessageBox.Show("Please fix your invalid " + getInvalidFieldString(result) + " field.",
+                MessageBox.Show("Please fix your invalid \"" + getInvalidFieldString(result) + "\" field.",
                     "Invalid " + result.ToString());
             }
         }
