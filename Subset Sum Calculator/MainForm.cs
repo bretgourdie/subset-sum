@@ -27,6 +27,18 @@ namespace Subset_Sum_Calculator
             if (result == InvalidField.None)
             {
                 var calc = new SubsetSumCalculator(sum, values);
+
+                var applicableSubsets = calc.GetMatches();
+
+                if (applicableSubsets.Count == 0)
+                {
+                    MessageBox.Show("No values add together to make the sum \"" + sum.ToString() + "\"!");
+                }
+
+                else
+                {
+                    outputDataGridView.DataSource = applicableSubsets;
+                }
             }
 
             else
@@ -98,7 +110,7 @@ namespace Subset_Sum_Calculator
 
         private decimal[] getValues(string sValues)
         {
-            var regexSplit = Regex.Split(sValues, @"\w+");
+            var regexSplit = Regex.Split(sValues, @"\s+");
             var listOfDecimals = new List<decimal>();
 
             try
