@@ -37,16 +37,19 @@
             this.valuesLabel = new System.Windows.Forms.Label();
             this.valuesTextBox = new System.Windows.Forms.TextBox();
             this.outputTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.outputLabel = new System.Windows.Forms.Label();
             this.outputTextBox = new System.Windows.Forms.TextBox();
             this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.calculateButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.outputHeaderTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.outputLabel = new System.Windows.Forms.Label();
+            this.commasCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTableLayoutPanel.SuspendLayout();
             this.programTableLayoutPanel.SuspendLayout();
             this.inputTableLayoutPanel.SuspendLayout();
             this.outputTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
+            this.outputHeaderTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTableLayoutPanel
@@ -156,38 +159,26 @@
             // 
             this.outputTableLayoutPanel.ColumnCount = 1;
             this.outputTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.outputTableLayoutPanel.Controls.Add(this.outputLabel, 0, 0);
             this.outputTableLayoutPanel.Controls.Add(this.outputTextBox, 0, 1);
+            this.outputTableLayoutPanel.Controls.Add(this.outputHeaderTableLayoutPanel, 0, 0);
             this.outputTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputTableLayoutPanel.Location = new System.Drawing.Point(3, 149);
             this.outputTableLayoutPanel.Name = "outputTableLayoutPanel";
             this.outputTableLayoutPanel.RowCount = 2;
-            this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.outputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.outputTableLayoutPanel.Size = new System.Drawing.Size(445, 230);
             this.outputTableLayoutPanel.TabIndex = 1;
             // 
-            // outputLabel
-            // 
-            this.outputLabel.AutoSize = true;
-            this.outputLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.outputLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputLabel.Location = new System.Drawing.Point(3, 0);
-            this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(439, 19);
-            this.outputLabel.TabIndex = 0;
-            this.outputLabel.Text = "Results";
-            this.outputLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // outputTextBox
             // 
             this.outputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.outputTextBox.Location = new System.Drawing.Point(3, 22);
+            this.outputTextBox.Location = new System.Drawing.Point(3, 23);
             this.outputTextBox.Multiline = true;
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.ReadOnly = true;
             this.outputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.outputTextBox.Size = new System.Drawing.Size(439, 205);
+            this.outputTextBox.Size = new System.Drawing.Size(439, 204);
             this.outputTextBox.TabIndex = 1;
             // 
             // buttonsTableLayoutPanel
@@ -228,6 +219,45 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // outputHeaderTableLayoutPanel
+            // 
+            this.outputHeaderTableLayoutPanel.ColumnCount = 2;
+            this.outputHeaderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.outputHeaderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.outputHeaderTableLayoutPanel.Controls.Add(this.outputLabel, 0, 0);
+            this.outputHeaderTableLayoutPanel.Controls.Add(this.commasCheckBox, 1, 0);
+            this.outputHeaderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputHeaderTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.outputHeaderTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.outputHeaderTableLayoutPanel.Name = "outputHeaderTableLayoutPanel";
+            this.outputHeaderTableLayoutPanel.RowCount = 1;
+            this.outputHeaderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.outputHeaderTableLayoutPanel.Size = new System.Drawing.Size(445, 20);
+            this.outputHeaderTableLayoutPanel.TabIndex = 2;
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.Location = new System.Drawing.Point(3, 0);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(216, 20);
+            this.outputLabel.TabIndex = 1;
+            this.outputLabel.Text = "Results";
+            // 
+            // commasCheckBox
+            // 
+            this.commasCheckBox.AutoSize = true;
+            this.commasCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commasCheckBox.Location = new System.Drawing.Point(222, 0);
+            this.commasCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.commasCheckBox.Name = "commasCheckBox";
+            this.commasCheckBox.Size = new System.Drawing.Size(223, 20);
+            this.commasCheckBox.TabIndex = 2;
+            this.commasCheckBox.Text = "Add commas between subsets";
+            this.commasCheckBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,6 +274,8 @@
             this.outputTableLayoutPanel.ResumeLayout(false);
             this.outputTableLayoutPanel.PerformLayout();
             this.buttonsTableLayoutPanel.ResumeLayout(false);
+            this.outputHeaderTableLayoutPanel.ResumeLayout(false);
+            this.outputHeaderTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -262,8 +294,10 @@
         private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
         private System.Windows.Forms.Button calculateButton;
         private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Label outputLabel;
         private System.Windows.Forms.TextBox outputTextBox;
+        private System.Windows.Forms.TableLayoutPanel outputHeaderTableLayoutPanel;
+        private System.Windows.Forms.Label outputLabel;
+        private System.Windows.Forms.CheckBox commasCheckBox;
     }
 }
 
