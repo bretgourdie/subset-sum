@@ -202,6 +202,7 @@ namespace Subset_Sum_Calculator
                     toString = "values";
                     break;
                 case InvalidField.None:
+                case InvalidField.NoResults:
                 default:
                     toString = "N/A";
                     break;
@@ -234,6 +235,10 @@ namespace Subset_Sum_Calculator
         /// Denotes the "values" field is invalid.
         /// </summary>
         Values, 
+        /// <summary>
+        /// Denotes that no "values" sum together to the "sum" field.
+        /// </summary>
+        NoResults,
         /// <summary>
         /// Denotes that no fields are invalid.
         /// </summary>
