@@ -39,7 +39,7 @@ namespace Subset_Sum_Calculator
             {
                 var calc = new SubsetSumCalculator(sum, values);
 
-                var applicableSubsets = calc.GetMatches();
+                var applicableSubsets = calc.GetSubsets();
 
                 if (applicableSubsets.Count == 0)
                 {

@@ -33,7 +33,7 @@ namespace Subset_Sum_Calculator
         /// Calculates a list of subset sums and returns it.
         /// </summary>
         /// <returns>Returns a list of comma-separated strings with subsets equaling the sum.</returns>
-        public List<decimal[]> GetMatches()
+        public List<decimal[]> GetSubsets()
         {
             var matches = new List<string>();
 
