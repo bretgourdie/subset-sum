@@ -10,6 +10,9 @@ namespace Subset_Sum_Calculator
     public partial class MainForm : Form
     {
         private List<decimal[]> subsetSumList { get; set; }
+        private const string COMMAS = "commas";
+        private const string TABS = "tabs";
+        private const string SPACES = "spaces";
 
         /// <summary>
         /// Initializes the form.
@@ -24,14 +27,13 @@ namespace Subset_Sum_Calculator
 
             switch (separator)
             {
-                case ", ":
-                case ",": // Detect attempt to fix settings file
+                case COMMAS:
                     commasRadioButton.Checked = true;
                     break;
-                case " ":
+                case SPACES:
                     spacesRadioButton.Checked = true;
                     break;
-                case "\t":
+                case TABS:
                     tabsRadioButton.Checked = true;
                     break;
                 default:
@@ -337,7 +339,23 @@ namespace Subset_Sum_Calculator
         /// <param name="useCommas">Current setting for using commas.</param>
         private void saveSettings(bool commasChecked, bool spacesChecked, bool tabsChecked)
         {
-            string separator = getSeparator(commasChecked, spacesChecked, tabsChecked);
+            string separator;
+            if (commasChecked)
+            {
+                separator = COMMAS;
+            }
+            else if (spacesChecked)
+            {
+                separator = SPACES;
+            }
+            else if (tabsChecked)
+            {
+                separator = TABS;
+            }
+            else
+            {
+                separator = COMMAS;
+            }
 
             Properties.Settings.Default.separator = separator;
 
