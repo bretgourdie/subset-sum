@@ -376,5 +376,13 @@ namespace Subset_Sum_Calculator
         {
             setOutputTextBox(this.subsetSumList);
         }
+
+        private void outputTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
     }
 }

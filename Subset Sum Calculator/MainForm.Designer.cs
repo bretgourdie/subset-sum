@@ -184,6 +184,7 @@
             this.outputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.outputTextBox.Size = new System.Drawing.Size(439, 204);
             this.outputTextBox.TabIndex = 1;
+            this.outputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.outputTextBox_KeyDown);
             // 
             // buttonsTableLayoutPanel
             // 
