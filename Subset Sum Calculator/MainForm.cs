@@ -11,13 +11,24 @@ using System.Text.RegularExpressions;
 
 namespace Subset_Sum_Calculator
 {
+    /// <summary>
+    /// Form to enter parameters and display results of the subset sum calculator.
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Initializes the form.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Calculate button "Click" trigger.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void calculateButton_Click(object sender, EventArgs e)
         {
             decimal sum;
@@ -49,6 +60,14 @@ namespace Subset_Sum_Calculator
             }
         }
 
+        /// <summary>
+        /// Validates the input fields and returns the state of invalid fields.
+        /// </summary>
+        /// <param name="sumText">The text of the "sum" field.</param>
+        /// <param name="valuesText">The text of the "values" field.</param>
+        /// <param name="outputSum">The result of parsing the "sum" field.</param>
+        /// <param name="outputValues">The result of parsing the "values" field.</param>
+        /// <returns>Returns an InvalidField to describe which field was invalid.</returns>
         private InvalidField validateFields(string sumText, string valuesText, out decimal outputSum, out decimal[] outputValues)
         {
             var invalidField = InvalidField.Sum;
@@ -78,6 +97,12 @@ namespace Subset_Sum_Calculator
             return invalidField;
         }
 
+        /// <summary>
+        /// Parses the supplied string for a decimal sum.
+        /// Throws an InvalidCastException if the parse fails.
+        /// </summary>
+        /// <param name="sSum">The sum as a string.</param>
+        /// <returns>Returns the parsed sum.</returns>
         private decimal getSum(string sSum)
         {
             decimal sum;
@@ -94,6 +119,12 @@ namespace Subset_Sum_Calculator
             return sum;
         }
 
+        /// <summary>
+        /// Parses the supplied string for a decimal array of values.
+        /// Throws an InvalidCastException if the parse fails.
+        /// </summary>
+        /// <param name="sValues">The values as a string.</param>
+        /// <returns>Returns the parsed values.</returns>
         private decimal[] getValues(string sValues)
         {
             var emptyCharArray = new char[0];
@@ -119,6 +150,11 @@ namespace Subset_Sum_Calculator
             return listOfDecimals.ToArray();
         }
 
+        /// <summary>
+        /// Translates an InvalidField to a string for error output.
+        /// </summary>
+        /// <param name="invalidField">The result of a field validation.</param>
+        /// <returns>Returns a stringified InvalidField.</returns>
         private string getInvalidFieldString(InvalidField invalidField)
         {
             var toString = "";
@@ -140,14 +176,33 @@ namespace Subset_Sum_Calculator
             return toString;
         }
 
+        /// <summary>
+        /// The exit button's "Click" trigger.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
     }
 
+    /// <summary>
+    /// The state of the first invalid field on the form.
+    /// </summary>
     public enum InvalidField
     {
-        Sum, Values, None
+        /// <summary>
+        /// Denotes the "sum" field is invalid.
+        /// </summary>
+        Sum, 
+        /// <summary>
+        /// Denotes the "values" field is invalid.
+        /// </summary>
+        Values, 
+        /// <summary>
+        /// Denotes that no fields are invalid.
+        /// </summary>
+        None
     }
 }
