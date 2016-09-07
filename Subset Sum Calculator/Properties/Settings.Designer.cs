@@ -25,13 +25,13 @@ namespace Subset_Sum_Calculator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool useCommas {
+        [global::System.Configuration.DefaultSettingValueAttribute(", ")]
+        public string separator {
             get {
-                return ((bool)(this["useCommas"]));
+                return ((string)(this["separator"]));
             }
             set {
-                this["useCommas"] = value;
+                this["separator"] = value;
             }
         }
     }

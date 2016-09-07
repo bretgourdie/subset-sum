@@ -9,6 +9,8 @@ namespace Subset_Sum_Calculator
     /// </summary>
     public partial class MainForm : Form
     {
+        private List<decimal[]> subsetSumList { get; set; }
+
         /// <summary>
         /// Initializes the form.
         /// </summary>
@@ -16,7 +18,25 @@ namespace Subset_Sum_Calculator
         {
             InitializeComponent();
 
-            commasCheckBox.Checked = Properties.Settings.Default.useCommas;
+            this.subsetSumList = new List<decimal[]>();
+
+            switch (Properties.Settings.Default.separator)
+            {
+                case ", ":
+                case ",": // Detect attempt to fix settings file
+                    commasRadioButton.Checked = true;
+                    break;
+                case " ":
+                    spacesRadioButton.Checked = true;
+                    break;
+                case "\t":
+                    tabsRadioButton.Checked = true;
+                    break;
+                default:
+                    // Use commas if none
+                    commasRadioButton.Checked = true;
+                    break;
+            }
         }
 
         /// <summary>
@@ -79,13 +99,25 @@ namespace Subset_Sum_Calculator
 
                 else
                 {
-                    var sApplicableSubsets = convertSubsetsWithSumToStrings(applicableSubsets, commasCheckBox.Checked);
-                    var oneSApplicableSubsets = String.Join(System.Environment.NewLine, sApplicableSubsets);
-                    outputTextBox.Text = oneSApplicableSubsets;
+                    this.subsetSumList = applicableSubsets;
+
+                    setOutputTextBox(this.subsetSumList);
                 }
             }
 
             return invalidInput;
+        }
+
+        private void setOutputTextBox(List<decimal[]> subsetSumList)
+        {
+            var sApplicableSubsets = convertSubsetsWithSumToStrings(
+                this.subsetSumList, 
+                commasRadioButton.Checked,
+                spacesRadioButton.Checked,
+                tabsRadioButton.Checked);
+
+            var oneSApplicableSubsets = String.Join(System.Environment.NewLine, sApplicableSubsets);
+            outputTextBox.Text = oneSApplicableSubsets;
         }
         
         /// <summary>
@@ -93,10 +125,14 @@ namespace Subset_Sum_Calculator
         /// </summary>
         /// <param name="allSubsetsWithSum">All subsets that sum to the target sum.</param>
         /// <returns>Returns a list of comma-separated subset strings.</returns>
-        private List<string> convertSubsetsWithSumToStrings(List<decimal[]> allSubsetsWithSum, bool useCommas)
+        private List<string> convertSubsetsWithSumToStrings(
+            List<decimal[]> allSubsetsWithSum, 
+            bool useCommas,
+            bool useSpaces,
+            bool useTabs)
         {
             var stringSubsets = new List<string>();
-            var joiningString = useCommas ? ", " : " ";
+            var joiningString = getSeparator(useCommas, useSpaces, useTabs);
 
             foreach (var subset in allSubsetsWithSum)
             {
@@ -104,6 +140,31 @@ namespace Subset_Sum_Calculator
             }
 
             return stringSubsets;
+        }
+
+        private string getSeparator(bool useCommas, bool useSpaces, bool useTabs)
+        {
+            string separator;
+
+            if (useCommas)
+            {
+                separator = ", ";
+            }
+            else if (useSpaces)
+            {
+                separator = " ";
+            }
+            else if (useTabs)
+            {
+                separator = "\t";
+            }
+            else
+            {
+                // Just use commas instead
+                separator = ", ";
+            }
+
+            return separator;
         }
 
         /// <summary>
@@ -234,30 +295,26 @@ namespace Subset_Sum_Calculator
         }
 
         /// <summary>
-        /// commasCheckBox's "CheckedChanged" trigger.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void commasCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            var newText = changeOutputFormat(((CheckBox)sender).Checked, outputTextBox.Text);
-
-            outputTextBox.Text = newText;
-        }
-
-        /// <summary>
         /// Changes the outputTextBox text based on using commas or not.
         /// </summary>
         /// <param name="useCommas">Whether to use commas or not.</param>
         /// <param name="outputTextbox">The TextBox to change the output of.</param>
-        private string changeOutputFormat(bool useCommas, string outputText)
+        private string changeOutputFormat(bool useCommas, bool useSpaces, bool useTabs, string outputText)
         {
             var oldText = outputText;
 
-            var stringToReplace = useCommas ? " " : ", ";
-            var replaceWithString = useCommas ? ", " : " ";
+            var replaceWithString = getSeparator(useCommas, useSpaces, useTabs);
 
-            var newText = oldText.Replace(stringToReplace, replaceWithString);
+            var stringsToReplace = new List<string> { ", ", " ", "\t" };
+
+            stringsToReplace.Remove(replaceWithString);
+
+            string newText = oldText;
+
+            foreach (var stringToReplace in stringsToReplace)
+            {
+                newText = newText.Replace(stringToReplace, replaceWithString);
+            }
 
             return newText;
         }
@@ -269,18 +326,35 @@ namespace Subset_Sum_Calculator
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            saveSettings(commasCheckBox.Checked);
+            saveSettings(commasRadioButton.Checked, spacesRadioButton.Checked, tabsRadioButton.Checked);
         }
 
         /// <summary>
         /// Save user settings.
         /// </summary>
         /// <param name="useCommas">Current setting for using commas.</param>
-        private void saveSettings(bool useCommas)
+        private void saveSettings(bool commasChecked, bool spacesChecked, bool tabsChecked)
         {
-            Properties.Settings.Default.useCommas = useCommas;
+            string separator = getSeparator(commasChecked, spacesChecked, tabsChecked);
+
+            Properties.Settings.Default.separator = separator;
 
             Properties.Settings.Default.Save();
+        }
+
+        private void spacesRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            setOutputTextBox(this.subsetSumList);
+        }
+
+        private void commasRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            setOutputTextBox(this.subsetSumList);
+        }
+
+        private void tabsRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            setOutputTextBox(this.subsetSumList);
         }
     }
 }

@@ -279,6 +279,7 @@
             this.spacesRadioButton.TabStop = true;
             this.spacesRadioButton.Text = "Spaces";
             this.spacesRadioButton.UseVisualStyleBackColor = true;
+            this.spacesRadioButton.CheckedChanged += new System.EventHandler(this.spacesRadioButton_CheckedChanged);
             // 
             // commasRadioButton
             // 
@@ -292,6 +293,7 @@
             this.commasRadioButton.TabStop = true;
             this.commasRadioButton.Text = "Commas";
             this.commasRadioButton.UseVisualStyleBackColor = true;
+            this.commasRadioButton.CheckedChanged += new System.EventHandler(this.commasRadioButton_CheckedChanged);
             // 
             // tabsRadioButton
             // 
@@ -305,6 +307,7 @@
             this.tabsRadioButton.TabStop = true;
             this.tabsRadioButton.Text = "Tabs";
             this.tabsRadioButton.UseVisualStyleBackColor = true;
+            this.tabsRadioButton.CheckedChanged += new System.EventHandler(this.tabsRadioButton_CheckedChanged);
             // 
             // MainForm
             // 
