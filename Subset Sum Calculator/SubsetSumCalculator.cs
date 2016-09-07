@@ -33,7 +33,7 @@ namespace Subset_Sum_Calculator
         /// Calculates a list of subset sums and returns it.
         /// </summary>
         /// <returns>Returns a list of comma-separated strings with subsets equaling the sum.</returns>
-        public List<string> GetMatches()
+        public List<decimal[]> GetMatches()
         {
             var matches = new List<string>();
 
@@ -41,27 +41,10 @@ namespace Subset_Sum_Calculator
 
             var allSubsetsWithSum = findAllSubsetsWithSum(allSubsets, this.Sum);
 
-            matches = convertSubsetsWithSumToStrings(allSubsetsWithSum);
-
-            return matches;
+            return allSubsetsWithSum;
         }
 
-        /// <summary>
-        /// Converts a list of decimal arrays to a list of comma-separated strings.
-        /// </summary>
-        /// <param name="allSubsetsWithSum">All subsets that sum to the target sum.</param>
-        /// <returns>Returns a list of comma-separated subset strings.</returns>
-        private List<string> convertSubsetsWithSumToStrings(List<decimal[]> allSubsetsWithSum)
-        {
-            var stringSubsets = new List<string>();
-
-            foreach (var subset in allSubsetsWithSum)
-            {
-                stringSubsets.Add(String.Join(", ", subset));
-            }
-
-            return stringSubsets;
-        }
+        
 
         /// <summary>
         /// Find all subsets for the given decimal array.

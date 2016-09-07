@@ -48,8 +48,9 @@ namespace Subset_Sum_Calculator
 
                 else
                 {
-                    var sApplicableSubsets = String.Join(System.Environment.NewLine, applicableSubsets);
-                    outputTextBox.Text = sApplicableSubsets;
+                    var sApplicableSubsets = convertSubsetsWithSumToStrings(applicableSubsets);
+                    var oneSApplicableSubsets = String.Join(System.Environment.NewLine, sApplicableSubsets);
+                    outputTextBox.Text = oneSApplicableSubsets;
                 }
             }
 
@@ -58,6 +59,23 @@ namespace Subset_Sum_Calculator
                 MessageBox.Show("Please fix your invalid \"" + getInvalidFieldString(result) + "\" field.",
                     "Invalid " + result.ToString());
             }
+        }
+        
+        /// <summary>
+        /// Converts a list of decimal arrays to a list of comma-separated strings.
+        /// </summary>
+        /// <param name="allSubsetsWithSum">All subsets that sum to the target sum.</param>
+        /// <returns>Returns a list of comma-separated subset strings.</returns>
+        private List<string> convertSubsetsWithSumToStrings(List<decimal[]> allSubsetsWithSum)
+        {
+            var stringSubsets = new List<string>();
+
+            foreach (var subset in allSubsetsWithSum)
+            {
+                stringSubsets.Add(String.Join(", ", subset));
+            }
+
+            return stringSubsets;
         }
 
         /// <summary>
