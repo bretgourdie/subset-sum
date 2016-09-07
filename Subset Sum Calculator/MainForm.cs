@@ -31,11 +31,29 @@ namespace Subset_Sum_Calculator
         /// <param name="e"></param>
         private void calculateButton_Click(object sender, EventArgs e)
         {
+            var invalidField = performCalculations();
+
+            switch (invalidField)
+            {
+                case InvalidField.Sum:
+                    break;
+                case InvalidField.Values:
+                    break;
+                case InvalidField.None:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private InvalidField performCalculations()
+        {
             decimal sum;
             decimal[] values;
+            var invalidField = InvalidField.None;
 
-            var result = validateFields(sumTextBox.Text, valuesTextBox.Text, out sum, out values);
-            if (result == InvalidField.None)
+            invalidField = validateFields(sumTextBox.Text, valuesTextBox.Text, out sum, out values);
+            if (invalidField == InvalidField.None)
             {
                 var calc = new SubsetSumCalculator(sum, values);
 
@@ -56,9 +74,11 @@ namespace Subset_Sum_Calculator
 
             else
             {
-                MessageBox.Show("Please fix your invalid \"" + getInvalidFieldString(result) + "\" field.",
-                    "Invalid " + result.ToString());
+                MessageBox.Show("Please fix your invalid \"" + getInvalidFieldString(invalidField) + "\" field.",
+                    "Invalid " + invalidField.ToString());
             }
+
+            return invalidField;
         }
         
         /// <summary>
