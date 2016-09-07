@@ -37,7 +37,8 @@ namespace Subset_Sum_Calculator
 
                 else
                 {
-                    outputDataGridView.DataSource = applicableSubsets;
+                    var sApplicableSubsets = String.Join(System.Environment.NewLine, applicableSubsets);
+                    outputTextBox.Text = sApplicableSubsets;
                 }
             }
 
