@@ -54,6 +54,13 @@ namespace Subset_Sum_Calculator
             }
         }
 
+        /// <summary>
+        /// Calculates the subset sum by using the input TextBoxes to supply the output TextBox.
+        /// </summary>
+        /// <param name="sumTextBox">The "sum" input box.</param>
+        /// <param name="valuesTextBox">The "values" input box.</param>
+        /// <param name="outputTextBox">The "subsets" output box.</param>
+        /// <returns>Returns the state of the inputs or None if there were no issues.</returns>
         private InvalidField performCalculations(
             TextBox sumTextBox, 
             TextBox valuesTextBox, 
