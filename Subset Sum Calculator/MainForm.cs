@@ -31,23 +31,23 @@ namespace Subset_Sum_Calculator
         /// <param name="e"></param>
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            var invalidField = performCalculations(
+            var invalidInput = performCalculations(
                 this.sumTextBox, 
                 this.valuesTextBox, 
                 this.outputTextBox);
 
-            switch (invalidField)
+            switch (invalidInput)
             {
-                case InvalidField.Sum:
-                case InvalidField.Values:
+                case InvalidInput.Sum:
+                case InvalidInput.Values:
                     MessageBox.Show("Please fix your invalid \"" 
-                        + getInvalidFieldString(invalidField) + "\" field.",
-                        "Invalid " + invalidField.ToString());
+                        + getInvalidInputString(invalidInput) + "\" field.",
+                        "Invalid " + invalidInput.ToString());
                     break;
-                case InvalidField.NoResults:
+                case InvalidInput.NoResults:
                     MessageBox.Show("No values add together to make the sum \"" + sumTextBox.Text + "\"!");
                     break;
-                case InvalidField.None:
+                case InvalidInput.None:
                     break;
                 default:
                     break;
@@ -61,17 +61,17 @@ namespace Subset_Sum_Calculator
         /// <param name="valuesTextBox">The "values" input box.</param>
         /// <param name="outputTextBox">The "subsets" output box.</param>
         /// <returns>Returns the state of the inputs or None if there were no issues.</returns>
-        private InvalidField performCalculations(
+        private InvalidInput performCalculations(
             TextBox sumTextBox, 
             TextBox valuesTextBox, 
             TextBox outputTextBox)
         {
             decimal sum;
             decimal[] values;
-            var invalidField = InvalidField.None;
+            var invalidInput = InvalidInput.None;
 
-            invalidField = validateFields(sumTextBox.Text, valuesTextBox.Text, out sum, out values);
-            if (invalidField == InvalidField.None)
+            invalidInput = validateFields(sumTextBox.Text, valuesTextBox.Text, out sum, out values);
+            if (invalidInput == InvalidInput.None)
             {
                 var calc = new SubsetSumCalculator(sum, values);
 
@@ -79,7 +79,7 @@ namespace Subset_Sum_Calculator
 
                 if (applicableSubsets.Count == 0)
                 {
-                    invalidField = InvalidField.NoResults;
+                    invalidInput = InvalidInput.NoResults;
                 }
 
                 else
@@ -90,7 +90,7 @@ namespace Subset_Sum_Calculator
                 }
             }
 
-            return invalidField;
+            return invalidInput;
         }
         
         /// <summary>
@@ -117,10 +117,10 @@ namespace Subset_Sum_Calculator
         /// <param name="valuesText">The text of the "values" field.</param>
         /// <param name="outputSum">The result of parsing the "sum" field.</param>
         /// <param name="outputValues">The result of parsing the "values" field.</param>
-        /// <returns>Returns an InvalidField to describe which field was invalid.</returns>
-        private InvalidField validateFields(string sumText, string valuesText, out decimal outputSum, out decimal[] outputValues)
+        /// <returns>Returns an InvalidInput to describe which field was invalid.</returns>
+        private InvalidInput validateFields(string sumText, string valuesText, out decimal outputSum, out decimal[] outputValues)
         {
-            var invalidField = InvalidField.Sum;
+            var invalidInput = InvalidInput.Sum;
 
             decimal? sum = null;
             decimal[] values = null;
@@ -130,10 +130,10 @@ namespace Subset_Sum_Calculator
             try
             {
                 sum = getSum(sumText);
-                invalidField = InvalidField.Values;
+                invalidInput = InvalidInput.Values;
 
                 values = getValues(valuesText);
-                invalidField = InvalidField.None;
+                invalidInput = InvalidInput.None;
 
                 outputSum = (int)sum;
                 outputValues = values;
@@ -144,7 +144,7 @@ namespace Subset_Sum_Calculator
                 // Disregard exception; use enum to report issue
             }
 
-            return invalidField;
+            return invalidInput;
         }
 
         /// <summary>
@@ -201,24 +201,24 @@ namespace Subset_Sum_Calculator
         }
 
         /// <summary>
-        /// Translates an InvalidField to a string for error output.
+        /// Translates an InvalidInput to a string describing an incorrect field.
         /// </summary>
-        /// <param name="invalidField">The result of a field validation.</param>
-        /// <returns>Returns a stringified InvalidField.</returns>
-        private string getInvalidFieldString(InvalidField invalidField)
+        /// <param name="invalidInput">The result of an input validation.</param>
+        /// <returns>Returns a stringified InvalidInput.</returns>
+        private string getInvalidInputString(InvalidInput invalidInput)
         {
             var toString = "";
 
-            switch (invalidField)
+            switch (invalidInput)
             {
-                case InvalidField.Sum:
+                case InvalidInput.Sum:
                     toString = "sum";
                     break;
-                case InvalidField.Values:
+                case InvalidInput.Values:
                     toString = "values";
                     break;
-                case InvalidField.None:
-                case InvalidField.NoResults:
+                case InvalidInput.None:
+                case InvalidInput.NoResults:
                 default:
                     toString = "N/A";
                     break;
@@ -239,9 +239,9 @@ namespace Subset_Sum_Calculator
     }
 
     /// <summary>
-    /// The state of the first invalid field on the form.
+    /// The state of the input on the form.
     /// </summary>
-    public enum InvalidField
+    public enum InvalidInput
     {
         /// <summary>
         /// Denotes the "sum" field is invalid.
@@ -256,7 +256,7 @@ namespace Subset_Sum_Calculator
         /// </summary>
         NoResults,
         /// <summary>
-        /// Denotes that no fields are invalid.
+        /// Denotes that no inputs are invalid.
         /// </summary>
         None
     }
