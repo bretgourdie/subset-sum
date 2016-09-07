@@ -36,8 +36,10 @@ namespace Subset_Sum_Calculator
             switch (invalidField)
             {
                 case InvalidField.Sum:
-                    break;
                 case InvalidField.Values:
+                    MessageBox.Show("Please fix your invalid \"" 
+                        + getInvalidFieldString(invalidField) + "\" field.",
+                        "Invalid " + invalidField.ToString());
                     break;
                 case InvalidField.None:
                     break;
@@ -70,12 +72,6 @@ namespace Subset_Sum_Calculator
                     var oneSApplicableSubsets = String.Join(System.Environment.NewLine, sApplicableSubsets);
                     outputTextBox.Text = oneSApplicableSubsets;
                 }
-            }
-
-            else
-            {
-                MessageBox.Show("Please fix your invalid \"" + getInvalidFieldString(invalidField) + "\" field.",
-                    "Invalid " + invalidField.ToString());
             }
 
             return invalidField;
