@@ -196,7 +196,7 @@ namespace Subset_Sum_Calculator
                 values = getValues(valuesText);
                 invalidInput = InvalidInput.None;
 
-                outputSum = (int)sum;
+                outputSum = (decimal)sum;
                 outputValues = values;
             }
 
