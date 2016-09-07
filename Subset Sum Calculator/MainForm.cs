@@ -31,7 +31,10 @@ namespace Subset_Sum_Calculator
         /// <param name="e"></param>
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            var invalidField = performCalculations();
+            var invalidField = performCalculations(
+                this.sumTextBox, 
+                this.valuesTextBox, 
+                this.outputTextBox);
 
             switch (invalidField)
             {
@@ -41,6 +44,9 @@ namespace Subset_Sum_Calculator
                         + getInvalidFieldString(invalidField) + "\" field.",
                         "Invalid " + invalidField.ToString());
                     break;
+                case InvalidField.NoResults:
+                    MessageBox.Show("No values add together to make the sum \"" + sumTextBox.Text + "\"!");
+                    break;
                 case InvalidField.None:
                     break;
                 default:
@@ -48,7 +54,10 @@ namespace Subset_Sum_Calculator
             }
         }
 
-        private InvalidField performCalculations()
+        private InvalidField performCalculations(
+            TextBox sumTextBox, 
+            TextBox valuesTextBox, 
+            TextBox outputTextBox)
         {
             decimal sum;
             decimal[] values;
@@ -63,7 +72,7 @@ namespace Subset_Sum_Calculator
 
                 if (applicableSubsets.Count == 0)
                 {
-                    MessageBox.Show("No values add together to make the sum \"" + sum.ToString() + "\"!");
+                    invalidField = InvalidField.NoResults;
                 }
 
                 else
