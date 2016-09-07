@@ -42,7 +42,7 @@ namespace Subset_Sum_Calculator
                 case InvalidInput.Values:
                     MessageBox.Show("Please fix your invalid \"" 
                         + getInvalidInputString(invalidInput) + "\" field.",
-                        "Invalid " + invalidInput.ToString());
+                        "Invalid " + getInvalidInputString(invalidInput));
                     break;
                 case InvalidInput.NoResults:
                     MessageBox.Show("No values add together to make the sum \"" + sumTextBox.Text + "\"!");
