@@ -15,6 +15,8 @@ namespace Subset_Sum_Calculator
         public MainForm()
         {
             InitializeComponent();
+
+            commasCheckBox.Checked = Properties.Settings.Default.useCommas;
         }
 
         /// <summary>
@@ -258,6 +260,27 @@ namespace Subset_Sum_Calculator
             var newText = oldText.Replace(stringToReplace, replaceWithString);
 
             return newText;
+        }
+
+        /// <summary>
+        /// The MainForm's "FormClosing" trigger.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            saveSettings(commasCheckBox.Checked);
+        }
+
+        /// <summary>
+        /// Save user settings.
+        /// </summary>
+        /// <param name="useCommas">Current setting for using commas.</param>
+        private void saveSettings(bool useCommas)
+        {
+            Properties.Settings.Default.useCommas = useCommas;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

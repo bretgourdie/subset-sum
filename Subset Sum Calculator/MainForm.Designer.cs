@@ -43,13 +43,17 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.outputHeaderTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.outputLabel = new System.Windows.Forms.Label();
-            this.commasCheckBox = new System.Windows.Forms.CheckBox();
+            this.separationSelectionTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.spacesRadioButton = new System.Windows.Forms.RadioButton();
+            this.commasRadioButton = new System.Windows.Forms.RadioButton();
+            this.tabsRadioButton = new System.Windows.Forms.RadioButton();
             this.mainTableLayoutPanel.SuspendLayout();
             this.programTableLayoutPanel.SuspendLayout();
             this.inputTableLayoutPanel.SuspendLayout();
             this.outputTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
             this.outputHeaderTableLayoutPanel.SuspendLayout();
+            this.separationSelectionTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTableLayoutPanel
@@ -222,42 +226,85 @@
             // outputHeaderTableLayoutPanel
             // 
             this.outputHeaderTableLayoutPanel.ColumnCount = 2;
-            this.outputHeaderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.outputHeaderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.outputHeaderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.outputHeaderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.outputHeaderTableLayoutPanel.Controls.Add(this.outputLabel, 0, 0);
-            this.outputHeaderTableLayoutPanel.Controls.Add(this.commasCheckBox, 1, 0);
+            this.outputHeaderTableLayoutPanel.Controls.Add(this.separationSelectionTableLayoutPanel, 1, 0);
             this.outputHeaderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputHeaderTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.outputHeaderTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.outputHeaderTableLayoutPanel.Name = "outputHeaderTableLayoutPanel";
             this.outputHeaderTableLayoutPanel.RowCount = 1;
-            this.outputHeaderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.outputHeaderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.outputHeaderTableLayoutPanel.Size = new System.Drawing.Size(445, 20);
             this.outputHeaderTableLayoutPanel.TabIndex = 2;
             // 
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.Location = new System.Drawing.Point(3, 0);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(216, 20);
+            this.outputLabel.Size = new System.Drawing.Size(154, 19);
             this.outputLabel.TabIndex = 1;
-            this.outputLabel.Text = "Results";
+            this.outputLabel.Text = "Results separated by";
             // 
-            // commasCheckBox
+            // separationSelectionTableLayoutPanel
             // 
-            this.commasCheckBox.AutoSize = true;
-            this.commasCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commasCheckBox.Location = new System.Drawing.Point(222, 0);
-            this.commasCheckBox.Margin = new System.Windows.Forms.Padding(0);
-            this.commasCheckBox.Name = "commasCheckBox";
-            this.commasCheckBox.Size = new System.Drawing.Size(223, 20);
-            this.commasCheckBox.TabIndex = 2;
-            this.commasCheckBox.Text = "Add commas between subset elements";
-            this.commasCheckBox.UseVisualStyleBackColor = true;
-            this.commasCheckBox.CheckedChanged += new System.EventHandler(this.commasCheckBox_CheckedChanged);
+            this.separationSelectionTableLayoutPanel.ColumnCount = 3;
+            this.separationSelectionTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.separationSelectionTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
+            this.separationSelectionTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.separationSelectionTableLayoutPanel.Controls.Add(this.tabsRadioButton, 2, 0);
+            this.separationSelectionTableLayoutPanel.Controls.Add(this.commasRadioButton, 1, 0);
+            this.separationSelectionTableLayoutPanel.Controls.Add(this.spacesRadioButton, 0, 0);
+            this.separationSelectionTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.separationSelectionTableLayoutPanel.Location = new System.Drawing.Point(160, 0);
+            this.separationSelectionTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.separationSelectionTableLayoutPanel.Name = "separationSelectionTableLayoutPanel";
+            this.separationSelectionTableLayoutPanel.RowCount = 1;
+            this.separationSelectionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.separationSelectionTableLayoutPanel.Size = new System.Drawing.Size(285, 20);
+            this.separationSelectionTableLayoutPanel.TabIndex = 2;
+            // 
+            // spacesRadioButton
+            // 
+            this.spacesRadioButton.AutoSize = true;
+            this.spacesRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spacesRadioButton.Location = new System.Drawing.Point(0, 0);
+            this.spacesRadioButton.Margin = new System.Windows.Forms.Padding(0);
+            this.spacesRadioButton.Name = "spacesRadioButton";
+            this.spacesRadioButton.Size = new System.Drawing.Size(94, 20);
+            this.spacesRadioButton.TabIndex = 0;
+            this.spacesRadioButton.TabStop = true;
+            this.spacesRadioButton.Text = "Spaces";
+            this.spacesRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // commasRadioButton
+            // 
+            this.commasRadioButton.AutoSize = true;
+            this.commasRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commasRadioButton.Location = new System.Drawing.Point(94, 0);
+            this.commasRadioButton.Margin = new System.Windows.Forms.Padding(0);
+            this.commasRadioButton.Name = "commasRadioButton";
+            this.commasRadioButton.Size = new System.Drawing.Size(96, 20);
+            this.commasRadioButton.TabIndex = 1;
+            this.commasRadioButton.TabStop = true;
+            this.commasRadioButton.Text = "Commas";
+            this.commasRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // tabsRadioButton
+            // 
+            this.tabsRadioButton.AutoSize = true;
+            this.tabsRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabsRadioButton.Location = new System.Drawing.Point(190, 0);
+            this.tabsRadioButton.Margin = new System.Windows.Forms.Padding(0);
+            this.tabsRadioButton.Name = "tabsRadioButton";
+            this.tabsRadioButton.Size = new System.Drawing.Size(95, 20);
+            this.tabsRadioButton.TabIndex = 2;
+            this.tabsRadioButton.TabStop = true;
+            this.tabsRadioButton.Text = "Tabs";
+            this.tabsRadioButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -267,6 +314,7 @@
             this.Controls.Add(this.mainTableLayoutPanel);
             this.Name = "MainForm";
             this.Text = "Subset Sum Calculator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.mainTableLayoutPanel.ResumeLayout(false);
             this.mainTableLayoutPanel.PerformLayout();
             this.programTableLayoutPanel.ResumeLayout(false);
@@ -277,6 +325,8 @@
             this.buttonsTableLayoutPanel.ResumeLayout(false);
             this.outputHeaderTableLayoutPanel.ResumeLayout(false);
             this.outputHeaderTableLayoutPanel.PerformLayout();
+            this.separationSelectionTableLayoutPanel.ResumeLayout(false);
+            this.separationSelectionTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -298,7 +348,10 @@
         private System.Windows.Forms.TextBox outputTextBox;
         private System.Windows.Forms.TableLayoutPanel outputHeaderTableLayoutPanel;
         private System.Windows.Forms.Label outputLabel;
-        private System.Windows.Forms.CheckBox commasCheckBox;
+        private System.Windows.Forms.TableLayoutPanel separationSelectionTableLayoutPanel;
+        private System.Windows.Forms.RadioButton tabsRadioButton;
+        private System.Windows.Forms.RadioButton commasRadioButton;
+        private System.Windows.Forms.RadioButton spacesRadioButton;
     }
 }
 
