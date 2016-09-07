@@ -77,7 +77,7 @@ namespace Subset_Sum_Calculator
 
                 else
                 {
-                    var sApplicableSubsets = convertSubsetsWithSumToStrings(applicableSubsets);
+                    var sApplicableSubsets = convertSubsetsWithSumToStrings(applicableSubsets, commasCheckBox.Checked);
                     var oneSApplicableSubsets = String.Join(System.Environment.NewLine, sApplicableSubsets);
                     outputTextBox.Text = oneSApplicableSubsets;
                 }
@@ -91,13 +91,14 @@ namespace Subset_Sum_Calculator
         /// </summary>
         /// <param name="allSubsetsWithSum">All subsets that sum to the target sum.</param>
         /// <returns>Returns a list of comma-separated subset strings.</returns>
-        private List<string> convertSubsetsWithSumToStrings(List<decimal[]> allSubsetsWithSum)
+        private List<string> convertSubsetsWithSumToStrings(List<decimal[]> allSubsetsWithSum, bool useCommas)
         {
             var stringSubsets = new List<string>();
+            var joiningString = useCommas ? ", " : " ";
 
             foreach (var subset in allSubsetsWithSum)
             {
-                stringSubsets.Add(String.Join(", ", subset));
+                stringSubsets.Add(String.Join(joiningString, subset));
             }
 
             return stringSubsets;
@@ -228,6 +229,35 @@ namespace Subset_Sum_Calculator
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// commasCheckBox's "CheckedChanged" trigger.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void commasCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var newText = changeOutputFormat(((CheckBox)sender).Checked, outputTextBox.Text);
+
+            outputTextBox.Text = newText;
+        }
+
+        /// <summary>
+        /// Changes the outputTextBox text based on using commas or not.
+        /// </summary>
+        /// <param name="useCommas">Whether to use commas or not.</param>
+        /// <param name="outputTextbox">The TextBox to change the output of.</param>
+        private string changeOutputFormat(bool useCommas, string outputText)
+        {
+            var oldText = outputText;
+
+            var stringToReplace = useCommas ? " " : ", ";
+            var replaceWithString = useCommas ? ", " : " ";
+
+            var newText = oldText.Replace(stringToReplace, replaceWithString);
+
+            return newText;
         }
     }
 }

@@ -255,8 +255,9 @@
             this.commasCheckBox.Name = "commasCheckBox";
             this.commasCheckBox.Size = new System.Drawing.Size(223, 20);
             this.commasCheckBox.TabIndex = 2;
-            this.commasCheckBox.Text = "Add commas between subsets";
+            this.commasCheckBox.Text = "Add commas between subset elements";
             this.commasCheckBox.UseVisualStyleBackColor = true;
+            this.commasCheckBox.CheckedChanged += new System.EventHandler(this.commasCheckBox_CheckedChanged);
             // 
             // MainForm
             // 
