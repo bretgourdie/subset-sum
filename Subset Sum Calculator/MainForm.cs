@@ -20,7 +20,9 @@ namespace Subset_Sum_Calculator
 
             this.subsetSumList = new List<decimal[]>();
 
-            switch (Properties.Settings.Default.separator)
+            var separator = Properties.Settings.Default.separator;
+
+            switch (separator)
             {
                 case ", ":
                 case ",": // Detect attempt to fix settings file
